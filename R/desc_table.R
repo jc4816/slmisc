@@ -19,6 +19,9 @@
 #' @import knitr
 #' @export
 
+require(qwraps2)
+require(dplyr)
+require(knitr)
 desc_table<-function(varlist, data,groupvar=NULL){
   ## determine variable types
   summary1<-list()
