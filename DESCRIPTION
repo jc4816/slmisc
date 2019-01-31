@@ -13,4 +13,10 @@ Imports:
     qwraps2,
     knitr,
     kableExtra
+Depends:
+    dplyr,
+    qwraps2,
+    knitr,
+    kableExtra
 RoxygenNote: 6.0.1
+
