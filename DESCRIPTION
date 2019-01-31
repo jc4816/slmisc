@@ -1,0 +1,16 @@
+Package: slmisc
+Type: Package
+Title: Miscelaneous functions to conduct LeeLab projects
+Version: 0.1.0
+Author: Seonjoo Lee and members from LeeLab
+Maintainer: The package maintainer <seonjool@gmail.com>
+Description: misc function for LeeLab projects
+License: Not specified
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr,
+    qwraps2,
+    knitr,
+    kableExtra
+RoxygenNote: 6.0.1
