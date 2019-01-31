@@ -19,10 +19,11 @@
 #' @import knitr
 #' @export
 
-require(qwraps2)
-require(dplyr)
-require(knitr)
+
 desc_table<-function(varlist, data,groupvar=NULL){
+  require(qwraps2)
+  require(dplyr)
+  require(knitr)
   ## determine variable types
   summary1<-list()
   vartype=unlist(lapply(varlist, function(x)ifelse(is.factor(data[,x])|is.character(data[,x]), 'cat','cont' )))
