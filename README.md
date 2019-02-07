@@ -2,17 +2,13 @@
 
 miscellaneous functions to conduct projects in LeeLab
 
+Current desc_table version only works with R-markdown, html setting. 
+
 # Example:
 
 library(devtools)
 
 install_github("seonjoo/slmisc")
-
-library(slmisc)
-
-library(dplyr)
-
-library(knitr)
 
 data(mtcars)
 
