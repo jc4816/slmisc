@@ -2,8 +2,9 @@
 #' Current version works in the html setting. We are working on extend it to the word document
 #'
 #' @param varlist One-dimensional predictor
-#' @param data
-#' @param groupvar
+#' @param data Dataset to be analyzed.
+#' @param groupvar Group variable name. If not specified, descriptive stats for all subjects are reported.
+#' @param total (default=TRUE). Valid only if groupvar is not NULL. total=FALSE if a user does not want to print stats for all subjects.
 #' @return squareroot of matrix
 #' @examples
 #' data(mtcars)
@@ -20,7 +21,7 @@
 #' @export
 
 
-desc_table<-function(varlist, data,groupvar=NULL){
+desc_table<-function(varlist, data,groupvar=NULL, total=TRUE){
 
   ## determine variable types
   summary1<-list()
@@ -51,6 +52,8 @@ desc_table<-function(varlist, data,groupvar=NULL){
   group<-c()
   if(is.null(groupvar)==FALSE){
     eval(parse(text=paste('group<-summary_table(dplyr::group_by(data,',groupvar,'), summary1)',sep='')))
+    if (total==FALSE){whole<-c()}
+
   }
 
   both=cbind(whole,group)

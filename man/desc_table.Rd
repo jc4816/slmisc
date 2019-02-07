@@ -5,10 +5,16 @@
 \title{Create descriptive table by group
 Current version works in the html setting. We are working on extend it to the word document}
 \usage{
-desc_table(varlist, data, groupvar = NULL)
+desc_table(varlist, data, groupvar = NULL, total = TRUE)
 }
 \arguments{
 \item{varlist}{One-dimensional predictor}
+
+\item{data}{Dataset to be analyzed.}
+
+\item{groupvar}{Group variable name. If not specified, descriptive stats for all subjects are reported.}
+
+\item{total}{(default=TRUE). Valid only if groupvar is not NULL. total=FALSE if a user does not want to print stats for all subjects.}
 }
 \value{
 squareroot of matrix
