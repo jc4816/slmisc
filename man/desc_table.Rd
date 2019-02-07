@@ -29,6 +29,7 @@ mtcars = mtcars \%>\% mutate(cyl=factor(cyl),vs=factor(vs), am=factor(am))
 varlist=c('mpg','disp','hp','drat','wt','gear','carb','vs')
 desc_table(varlist, data=mtcars,groupvar=NULL)
 desc_table(varlist, data=mtcars,groupvar="cyl")
+desc_table(varlist, data=mtcars,groupvar="cyl",total=FALSE)
 }
 \references{
 TBA
