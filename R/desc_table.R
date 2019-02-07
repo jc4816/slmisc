@@ -12,6 +12,7 @@
 #' varlist=c('mpg','disp','hp','drat','wt','gear','carb','vs')
 #' desc_table(varlist, data=mtcars,groupvar=NULL)
 #' desc_table(varlist, data=mtcars,groupvar="cyl")
+#' desc_table(varlist, data=mtcars,groupvar="cyl",total=FALSE)
 #' @author Seonjoo Lee, \email{sl3670@cumc.columbia.edu}
 #' @references TBA
 #' @keywords highdimensional mediation L1penalization
