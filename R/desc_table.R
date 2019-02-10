@@ -5,6 +5,7 @@
 #' @param data Dataset to be analyzed.
 #' @param groupvar Group variable name. If not specified, descriptive stats for all subjects are reported.
 #' @param total (default=TRUE). Valid only if groupvar is not NULL. total=FALSE if a user does not want to print stats for all subjects.
+#' @param ,group.comp (default=TRUE) Add p-values of group comparison. F test and Chi-square test are used for continuouis and categorail variables, respectively.
 #' @return squareroot of matrix
 #' @examples
 #' data(mtcars)
@@ -22,7 +23,7 @@
 #' @export
 
 
-desc_table<-function(varlist, data,groupvar=NULL, total=TRUE){
+desc_table<-function(varlist, data,groupvar=NULL, total=TRUE,group.comp=TRUE){
 
   ## determine variable types
   summary1<-list()
@@ -34,7 +35,7 @@ desc_table<-function(varlist, data,groupvar=NULL, total=TRUE){
       eval(parse(text=paste('summary1[["',varlist[j],'"]][["',varlist[j],'"]] = ~ qwraps2::mean_sd(',varlist[j],
                             ', na_rm = TRUE,show_n="never")',sep='')))
     }
-    if (vartype[[j]]=='cat'){
+    if (vartype[j]=='cat'){
       catlist=names(table(data[,varlist[j]]))
       if(sum(is.na(data[,varlist[j]]))>0){
         data[,varlist[j]]=as.factor(ifelse(is.na(data[,varlist[j]]), 'NA' ,data[,varlist[j]]))
@@ -48,15 +49,32 @@ desc_table<-function(varlist, data,groupvar=NULL, total=TRUE){
     }
   }
 
+### group comparison
+  ps<-list()
+  if (is.null(groupvar)==FALSE & group.comp==TRUE){
+    for (j in 1:length(varlist)){
+      if (vartype[j]=='cont'){eval(parse(text=paste("ps[[",j,"]]<-round(summary(aov(",varlist[j],"~",groupvar,",data))[[1]][1,5],4)")))}
+      if (vartype[j]=='cat'){
+        catlist=names(table(data[,varlist[j]]))
+        tmp<-rep(" ",length(catlist))
+        eval(parse(text=paste("tmp[1]<-round(chisq.test(table(data$",varlist[j],',data$',groupvar,'))$p.value,4)')))
+        eval(parse(text=paste("ps[[",j,"]]<-tmp")))
+        }
+    }
+  }
 
   whole<-summary_table(data, summary1)
   group<-c()
   if(is.null(groupvar)==FALSE){
     eval(parse(text=paste('group<-summary_table(dplyr::group_by(data,',groupvar,'), summary1)',sep='')))
     if (total==FALSE){whole<-c()}
-
   }
 
+  if (is.null(groupvar)==FALSE & group.comp==TRUE){
+    tmp.vec=unlist(ps)
+    tmp.vec[tmp.vec=='0']<-'p<0.0001'
+    group=cbind(group, tmp.vec)
+  }
   both=cbind(whole,group)
   kable(both)
   #  return(both)

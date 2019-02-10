@@ -5,7 +5,8 @@
 \title{Create descriptive table by group
 Current version works in the html setting. We are working on extend it to the word document}
 \usage{
-desc_table(varlist, data, groupvar = NULL, total = TRUE)
+desc_table(varlist, data, groupvar = NULL, total = TRUE,
+  group.comp = TRUE)
 }
 \arguments{
 \item{varlist}{One-dimensional predictor}
@@ -15,6 +16,8 @@ desc_table(varlist, data, groupvar = NULL, total = TRUE)
 \item{groupvar}{Group variable name. If not specified, descriptive stats for all subjects are reported.}
 
 \item{total}{(default=TRUE). Valid only if groupvar is not NULL. total=FALSE if a user does not want to print stats for all subjects.}
+
+\item{, group.comp}{(default=TRUE) Add p-values of group comparison. F test and Chi-square test are used for continuouis and categorail variables, respectively.}
 }
 \value{
 squareroot of matrix
