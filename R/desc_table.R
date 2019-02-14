@@ -5,7 +5,7 @@
 #' @param data Dataset to be analyzed.
 #' @param groupvar Group variable name. If not specified, descriptive stats for all subjects are reported.
 #' @param total (default=TRUE). Valid only if groupvar is not NULL. total=FALSE if a user does not want to print stats for all subjects.
-#' @param ,group.comp (default=TRUE) Add p-values of group comparison. F test and Chi-square test are used for continuouis and categorail variables, respectively.
+#' @param group.comp (default=TRUE) Add p-values of group comparison. F test and Chi-square test are used for continuouis and categorail variables, respectively.
 #' @return squareroot of matrix
 #' @examples
 #' data(mtcars)
